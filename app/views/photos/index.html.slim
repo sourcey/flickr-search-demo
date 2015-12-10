@@ -1,19 +1,23 @@
-form#search
-  .row.collapse.postfix-round
-    .small-9.columns
-      input placeholder="Search for images ie. `Himalayas`" type="text" name="search"
-    .small-3.columns
-      input.button.postfix type="submit" value="Go"
-
 .row
-  .large-12
-    - if @photos
-      - if @photos.any?
-        - @photos.each do |photo|
-          div.photo
-            - photo.small!(320)
-            = image_tag photo.source_url
-            /= photo.inspect
-        = will_paginate @photos
-      - else
-        p No images to display
+  .small-12
+    form#search
+      .row.collapse.postfix-round
+        .small-10.columns
+          input placeholder="Search for images ie. `Himalayas`" type="text" name="search"
+        .small-2.columns
+          input.button.postfix type="submit" value="Go"
+    #photos
+      - if @photos
+        - if @photos.any?
+          ul.clearing-thumbs.small-block-grid-4 data-clearing="true"
+            - @photos.each do |photo|
+              - photo.large!(1024)
+              li
+                a.photo.th href="#{photo.source_url}"
+                  - photo.small!(240)
+                  = image_tag photo.source_url
+                  /, size: "320x240"
+                  /= photo.inspect
+          = will_paginate @photos
+        - else
+          p No images to display
