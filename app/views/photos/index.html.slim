@@ -11,11 +11,8 @@
         - if @photos.any?
           ul.clearing-thumbs.small-block-grid-4 data-clearing="true"
             - @photos.each do |photo|
-              - photo.large!(1024)
               li
-                a.photo.th href="#{photo.source_url}"
-                  - photo.small!(240)
-                  = image_tag photo.source_url
+                a.photo.th href="#{photo.large!(1024).source_url}" style="background-image:url(#{photo.small!(240).source_url})"
           = will_paginate @photos
         - else
           p No images to display
