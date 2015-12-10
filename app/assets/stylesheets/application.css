@@ -11,5 +11,21 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require foundation_and_overrides
  *= require_self
  */
+
+
+main {
+  margin-top: 50px;
+}
+
+#search input {
+    font-size: 24px;
+    height: 3.3125rem;
+    line-height: 3.3125rem;
+}
+
+#search input[type=text] {
+    font-size: 24px;
+}

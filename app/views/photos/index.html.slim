@@ -1,0 +1,19 @@
+form#search
+  .row.collapse.postfix-round
+    .small-9.columns
+      input placeholder="Search for images ie. `Himalayas`" type="text" name="search"
+    .small-3.columns
+      input.button.postfix type="submit" value="Go"
+
+.row
+  .large-12
+    - if @photos
+      - if @photos.any?
+        - @photos.each do |photo|
+          div.photo
+            - photo.small!(320)
+            = image_tag photo.source_url
+            /= photo.inspect
+        = will_paginate @photos
+      - else
+        p No images to display
